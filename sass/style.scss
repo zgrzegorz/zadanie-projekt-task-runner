@@ -1,0 +1,403 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+/*!variables*/
+$font-one: cursive;
+$font-two:'Roboto', sans-serif;
+$color-white: #fff;
+$color-black: #000;
+$color-gold: gold;
+$breakpoints: (              
+small: (max-width: 640px),
+medium: (max-width: 800px),
+large: (max-width: 1024px),
+xlarge:(max-width: 1200px),
+);
+
+@mixin mq($breakpoint) {                     
+  $size: map-get($breakpoints, $breakpoint);  
+  @if($size) {                               
+    @media #{$size} {                        
+      @content;                               
+    }
+  }
+  @else {                                     
+    @error '"#{$breakpoint}" - Nie rozpoznaje tej wielkosci';  
+  }
+}
+/*!div_wrap*/
+.wrap {
+    min-height: 100vh;
+}
+/*!section flex__one*/
+.background {
+    background-image: linear-gradient(45deg, black 0%, gold 100%);
+    background-size: cover;
+    min-height: 200px;
+}
+.flex__one{ 
+    display: flex;
+    flex-wrap: wrap;
+    .logo{
+        font-family: $font-one;
+        padding: 20px 0 0 100px;
+        width:50%;
+        color: $color-gold;
+        @include mq(xlarge){
+            padding: 20px 0 0 90px;
+            width:35%;
+        }
+        @include mq(large){
+            padding: 20px 0 0 80px;
+            width:30%;
+        }
+        @include mq(medium){
+            padding: 20px 0 0 70px;
+            width:20%;
+        }
+        @include mq(small){
+            padding: 20px 0 0 30px;
+            width:15%;
+        }
+    }
+    .menu {
+        width: 50%;
+        @include mq(xlarge){
+            flex-grow:1;
+        }
+        @include mq(large){
+            display: flex;
+            width:40%;
+            margin-left:10px;
+            justify-content: flex-end;
+        }
+        @include mq(medium){
+            flex-grow:1;
+        }
+        @include mq(small){
+            width:70%;
+        }
+        .menu__list{
+            list-style-type: none;
+            text-transform: uppercase;
+            @include mq(large){
+                padding: 10px 0 0 10px;
+            }
+            .menu__link{
+                display: inline-block;
+                text-decoration: none;
+                color: $color-black;
+                padding: 20px 20px 0 20px;
+                margin:0 5px 0;
+                transition: all 1s;
+                @include mq(large){
+                    padding: 5px 10px;
+                }
+                @include mq(medium){
+                    padding: 10px 0 0 10px;
+                }
+                @include mq(small){
+                    padding: 10px 0 5px;
+                }                
+                &:hover{
+                    color: cadetblue;
+                }
+            }
+        }
+    }
+    .header{
+        flex-basis:100%;
+        display: flex;
+        color: $color-white;
+        margin: 10px 0;
+    }
+}
+.header{
+    &__welcome{
+        font-family: $font-one;
+        text-align: center;
+        flex-basis:100%;
+        padding-top: 10px;
+    }
+    &__nice{
+        font-family: $font-one;
+        font-size: 3em;
+        text-transform: uppercase;
+        text-align: center;
+        flex-basis:100%;
+        padding: 10px 0;
+        @include mq(large){
+            font-size: 2.5em;
+        }
+        @include mq(medium){
+            font-size: 2.2em;
+        }
+        @include mq(small){
+            font-size: 2em;
+        }        
+    }
+    &__link{
+        flex-basis: 100%;
+        text-align: center;
+        .btn {
+            border: 2px solid $color-black;
+            border-radius: 5px;
+            padding: 10px 20px 10px;
+            background-color: cadetblue;
+            display: inline-block;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family:$font-two;
+            color: $color-white;
+            transition: all 1s;
+            @include mq(large){
+                margin-top: 8px;
+                font-size: .9em;
+            }
+            @include mq(medium){
+                margin-top: 3px;
+                font-size: .9em;
+            }
+            @include mq(small){
+                margin-top: 5px;
+                font-size: .8em;
+            }
+            &:hover {
+                color: $color-black; 
+                background-color: $color-white;;
+            }
+        }
+    }
+}
+
+/*!section flex__two*/
+.flex__two{
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    .services{
+        flex-basis:100%;
+        display: flex;
+        margin-top: 20px;
+        &__welcome{
+            text-transform: uppercase;
+            padding: 10px 0;
+            @include mq(large){
+                font-size: 16px;
+            } 
+            @include mq(medium){
+                font-size: 15px;
+            } 
+            @include mq(small){
+                font-size: 14px;
+            }
+        }
+        &__proin{
+            flex-basis:100%;
+            margin-bottom:20px;
+            text-align: center;
+            font-family: $font-one;
+            @include mq(large){
+                font-size: 15px;
+            }  
+            @include mq(medium){
+                font-size: 13px;
+            } 
+            @include mq(small){
+                font-size: 12px;
+            }
+        }
+    }
+    .commerce{
+        flex-basis:20%;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 40px;
+        .fas {
+            text-align: center;
+            border: 2px solid $color-gold;
+            font-size: 30px;
+            width:60px;
+            height:60px;
+            line-height: 60px;
+            border-radius: 50%;
+            color: $color-gold;
+            @include mq(large){
+                font-size: 28px;
+                width:50px;
+                height:50px;
+                line-height: 50px;
+            } 
+            @include mq(medium){
+                font-size: 27px;
+                width:45px;
+                height:45px;
+                line-height: 45px;
+            }
+            @include mq(small){
+                font-size: 25px;
+                width:40px;
+                height:40px;
+                line-height: 40px;
+            }
+        }
+        &__welcome{
+            flex-basis: 100%;
+            padding: 10px 0;
+            text-align: center;
+            @include mq(large){
+                font-size: 16px;
+            } 
+            @include mq(medium){
+                font-size: 15px;
+            }
+            @include mq(small){
+                font-size: 14px;
+            }
+        }
+        &__proin{
+            font-family: $font-one;
+            @include mq(large){
+                font-size: 15px;
+            } 
+            @include mq(medium){
+                font-size: 13px;
+            }
+            @include mq(small){
+                font-size: 12px;
+            }
+        }
+    }
+}
+/*!section flex__three*/
+.flex__three{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .portfolio{
+        flex-basis: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align:center;
+        margin-top: 20px;
+        &__welcome{
+            flex-basis:100%;
+            text-transform: uppercase;
+            padding: 10px 0;
+            @include mq(large){
+                font-size: 16px;
+            } 
+            @include mq(medium){
+                font-size: 15px;
+            }
+            @include mq(small){
+                font-size: 14px;
+            }
+        }
+        &__proin{
+            font-family: $font-one;
+            margin-bottom:20px;
+            @include mq(large){
+                font-size: 15px;
+            }
+            @include mq(medium){
+                font-size: 13px;
+            }
+            @include mq(small){
+                font-size: 12px;
+            }
+        }
+    }
+    .bony {
+        flex-basis: 20%;
+        margin: 20px 40px;
+        text-align: center;
+        &__image{
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+        &__welcome{
+            padding-top: 10px;
+            @include mq(large){
+                font-size: 16px;
+            }
+            @include mq(medium){
+                font-size: 15px;
+            }
+            @include mq(small){
+                font-size: 14px;
+            }
+        }
+        &__print{
+            @include mq(large){
+                font-size: 15px;
+            }
+            @include mq(medium){
+                font-size: 13px;
+            }
+            @include mq(small){
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+/*!footer*/
+.footer{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    &__copy{
+        flex-basis: 20%;
+        margin-left: 90px;
+        font-size: .8rem;
+        @include mq(large){
+            margin-left: 10px; 
+            font-size: 0.9em;
+        }
+        @include mq(small){
+            margin-left: 5px; 
+            font-size: .7em;
+        }
+    }
+    &__icons{
+        flex-basis: 45%;
+        .fas, .fab{
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            background-color: $color-black;
+            color:$color-white;
+            @include mq(large){
+                width: 38px;
+                height: 38px;
+                line-height: 38px;
+                font-size: 18px;
+            }
+            @include mq(medium){
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                font-size: 17px;
+            }
+            @include mq(small){
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+
+
